@@ -22,3 +22,41 @@ function catGenerator(){
 
  
 }
+
+function rpsGame(yourChoice){
+  console.log(yourChoice);
+   var humanChoice,botChoice;
+   humanChoice =yourChoice.id;
+  botChoice= numberToChoice(randToRpsInt());
+
+  results=decideWinner(humanChoice, botChoice);
+  console.log(results);
+  console.log('computerChoice', botChoice);
+  // message=finalMessage(results);
+
+ // rpsFrontEnd(yourChoice,botChoice,message);
+}
+
+function randToRpsInt(){
+  return Math.floor(Math.random() *3);
+}
+
+function numberToChoice(number) {
+  return ['rock' ,'paper' ,'Scissor'][number];
+}
+
+function decideWinner(yourChoice, computerChoice){
+
+  var rpsDatabase = {
+      
+    'rock':{'Scissor':1,'rock':0.5, 'paper':0},
+    'paper':{'rock':1,'paper':0.5, 'Scissor':0},
+    'Scissor':{'paper':1,'Scissor':0.5, 'rock':0}
+  }
+
+  var yourScore=rpsDatabase[yourChoice][computerChoice];
+  var computerScore=rpsDatabase[computerChoice][yourChoice];
+
+   return [yourScore, computerScore]
+}
+
